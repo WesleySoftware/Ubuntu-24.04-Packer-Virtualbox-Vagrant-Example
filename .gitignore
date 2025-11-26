@@ -1,0 +1,17 @@
+# Packer build artifacts
+output-*/
+*.box
+packer_cache/
+
+# Logs
+*.log
+
+# Editor/IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+#vagrant
+test/.vagrant

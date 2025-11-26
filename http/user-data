@@ -1,0 +1,22 @@
+#cloud-config
+autoinstall:
+  version: 1
+  locale: en_US.UTF-8
+  keyboard:
+    layout: us
+  identity:
+    hostname: vagrant
+    username: vagrant
+    password: '$6$rounds=4096$5CU3LEj/MQvbkfPb$LmKEF9pCfU8R.dA.GemgE/8GT6r9blge3grJvdsVTMFKyLEQwzEF3SGWqAzjawY/XHRpWj4fOiLBrRyxJhIRJ1' # "vagrant" but in cloud-init hashed style
+  early-commands:
+    - systemctl stop ssh.service
+    - systemctl stop ssh.socket
+  ssh:
+    install-server: yes
+    allow-pw: yes
+  storage:
+    layout:
+      name: direct
+  late-commands:
+    - echo 'vagrant ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/vagrant
+    - chmod 440 /target/etc/sudoers.d/vagrant
